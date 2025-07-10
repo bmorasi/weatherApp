@@ -5,11 +5,15 @@ const locationInput = document.getElementById('locationInput');
 const unitToggle = document.getElementById('unitToggle');
 const searchButton = document.getElementById('searchButton');
 const locationElement = document.getElementById('location');
+const weatherIcon = document.getElementById('weatherIcon');
 const temperatureElement = document.getElementById('temperature');
 const descriptionElement = document.getElementById('description');
 
-window.onload = (event) => { // Default location
-    fetchWeather('Amsterdam');
+const defaultLocation = 'Amsterdam'; // Default location
+let currentLocation = defaultLocation;
+
+window.onload = (event) => {
+    fetchWeather(currentLocation);
 };
 
 searchButton.addEventListener('click', () => {
@@ -19,6 +23,10 @@ searchButton.addEventListener('click', () => {
     }
 });
 
+unitToggle.addEventListener('change', () => {
+    fetchWeather(currentLocation);
+})
+
 function fetchWeather(location) {
     const unitToggleValue = unitToggle.checked ? 'imperial' : 'metric';
     const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=${unitToggleValue}`;
@@ -26,7 +34,17 @@ function fetchWeather(location) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            currentLocation = location; 
+            if (data.cod !== 200) {
+                locationElement.textContent = 'Location not found';
+                weatherIcon.hidden = true;
+                temperatureElement.textContent = '';
+                descriptionElement.textContent = '';
+                throw new Error(data.message);
+            }
             locationElement.textContent = data.name;
+            weatherIcon.hidden = false;
+            weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
             temperatureElement.textContent = `${Math.round(data.main.temp)}°${unitToggle.checked ? 'F' : 'C'}`;
             descriptionElement.textContent = data.weather[0].description;
         })

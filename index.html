@@ -9,12 +9,19 @@
 <body>
     <div class="container">
         <h1>Weather App</h1>
-        <label class="switch">
-            <input type="checkbox" id="unitToggle">
-            <span class="slider round"/ >
-        </label>
-        <input type="text" id="locationInput" placeholder="Enter a city">
-        <button id="searchButton">Search</button>
+        <img src="" alt="Weather Icon" id="weatherIcon" hidden>
+        <div class="toggle-container">
+            <p>Metric</p>
+            <label class="switch">
+                <input type="checkbox" id="unitToggle">
+                    <span class="slider round"/ >
+            </label>
+            <p>Imperial</p>
+        </div>
+        <div class="input-container">
+            <input type="text" id="locationInput" placeholder="Enter a city">
+            <button id="searchButton">Search</button>
+        </div>
         <div class="weather-info">
             <h2 id="location"></h2>
             <p id="temperature"></p>

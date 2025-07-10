@@ -1,23 +1,36 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('weather1.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    color: #161616;
+    background-color: currentColor;
     height: 100vh;
     margin: 0;
     padding: 0; 
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
     max-width: 400px;
-    margin: 0 auto;
+    align-items: center;
     text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.5); /* Set the background color to be transparent */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adjust the alpha value here for the box shadow transparency */
+    margin: 0 auto;
     margin-top: 105px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.toggle-container p{
+    margin: 10px;
+    font-size: 18px;
 }
 
 h1 {
@@ -33,6 +46,7 @@ input[type="text"] {
 }
 
 button {
+    align-self: center;
     background-color: #007BFF;
     color: #fff;
     border: none;
@@ -46,18 +60,13 @@ button {
 }
 
 .switch {
+    align-self: center;
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-  
 .slider {
     position: absolute;
     cursor: pointer;
