@@ -18,13 +18,6 @@ window.onload = (event) => {
     fetchWeather(currentLocation);
 };
 
-searchButton.addEventListener('click', () => {
-    const location = locationInput.value;
-    if (location) {
-        fetchWeather(location);
-    }
-});
-
 unitToggle.addEventListener('change', () => {
     fetchWeather(currentLocation);
 })

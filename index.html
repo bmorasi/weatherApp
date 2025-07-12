@@ -19,8 +19,10 @@
             <p>Imperial</p>
         </div>
         <div class="input-container">
-            <input type="text" id="locationInput" placeholder="Enter a city">
-            <button id="searchButton">Search</button>
+            <form id="locationForm" onsubmit="fetchWeather(locationInput.value); return false;">
+                <input type="text" id="locationInput" placeholder="Enter a city" required>
+                <button id="searchButton">Search</button>
+            </form>
         </div>
         <h2 id="location"></h2>
         <img src="" alt="Weather Icon" id="weatherIcon" hidden>
