@@ -55,8 +55,37 @@ button {
     cursor: pointer;
 }
 
-.weather-info {
-    margin-top: 20px;
+.info-container {
+    width: 100%;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.info-labels{ 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.info-values { 
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+i {
+    font-size: xxx-large;
+    align-self: center;
+    margin: 20px;
+}
+
+.icon-text {
+    display:flex;
 }
 
 .switch {
@@ -89,6 +118,14 @@ button {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
+}
+
+input + .slider {
+    background-color: #007BFF;
+}
+
+input:checked + .slider {
+    background-color: #ff0303;
 }
   
 input:checked + .slider:before {
