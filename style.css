@@ -24,13 +24,9 @@ body {
 
 .toggle-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: auto;
-}
-
-.toggle-container p{
-    margin: 10px;
+    gap: 10px;
+    margin: 10px 0;
     font-size: 18px;
 }
 
@@ -47,7 +43,6 @@ input[type="text"] {
 }
 
 button {
-    align-self: center;
     background-color: #007BFF;
     color: #fff;
     border: none;

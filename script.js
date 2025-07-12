@@ -3,7 +3,6 @@ const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 const locationInput = document.getElementById('locationInput');
 const unitToggle = document.getElementById('unitToggle');
-const searchButton = document.getElementById('searchButton');
 const locationElement = document.getElementById('location');
 const weatherIcon = document.getElementById('weatherIcon');
 const temperatureElement = document.getElementById('temperature');
