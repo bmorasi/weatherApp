@@ -2,9 +2,10 @@ body {
     font-family: Arial, sans-serif;
     color: #161616;
     background-color: currentColor;
-    height: 100vh;
-    margin: 0;
-    padding: 0; 
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .container {
