@@ -1,14 +1,16 @@
 const apiKey = '0a7a7bbc14f53c8ec908bc056e1d419e';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
-const locationInput = document.getElementById('locationInput');
-const unitToggle = document.getElementById('unitToggle');
-const locationElement = document.getElementById('location');
-const weatherIcon = document.getElementById('weatherIcon');
-const temperatureElement = document.getElementById('temperature');
-const descriptionElement = document.getElementById('description');
-const humidityElement = document.getElementById('humidity');
-const windElement = document.getElementById('wind');
+const elementsMap = {
+    input: document.getElementById('locationInput'),
+    imperial: document.getElementById('unitToggle'),
+    location: document.getElementById('location'),
+    weatherIcon: document.getElementById('weatherIcon'),
+    temperature: document.getElementById('temperature'),
+    description: document.getElementById('description'),
+    humidity: document.getElementById('humidity'),
+    wind: document.getElementById('wind')
+}
 
 const defaultLocation = 'Amsterdam'; // Default location
 let currentLocation = defaultLocation;
@@ -22,7 +24,8 @@ unitToggle.addEventListener('change', () => {
 })
 
 function fetchWeather(location) {
-    const unitToggleValue = unitToggle.checked ? 'imperial' : 'metric';
+    const imperial = elementsMap.imperial.checked;
+    const unitToggleValue = imperial ? 'imperial' : 'metric';
     const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=${unitToggleValue}`;
 
     fetch(url)
@@ -30,21 +33,21 @@ function fetchWeather(location) {
         .then(data => {
             currentLocation = location; 
             if (data.cod !== 200) {
-                locationElement.textContent = 'Location not found';
-                weatherIcon.hidden = true;
-                temperatureElement.textContent = '';
-                descriptionElement.textContent = '';
-                humidityElement.textContent = `0%`;
-                windElement.textContent = `0 ${unitToggle.checked ? 'mph' : 'm/s'}`;
+                elementsMap.location.textContent = 'Location not found';
+                elementsMap.weatherIcon.hidden = true;
+                elementsMap.temperature.textContent = '';
+                elementsMap.description.textContent = '';
+                elementsMap.humidity.textContent = `0%`;
+                elementsMap.wind.textContent = `0 ${imperial ? 'mph' : 'm/s'}`;
                 throw new Error(data.message);
             }
-            locationElement.textContent = data.name;
-            weatherIcon.hidden = false;
-            weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-            temperatureElement.textContent = `${Math.round(data.main.temp)}°${unitToggle.checked ? 'F' : 'C'}`;
-            descriptionElement.textContent = data.weather[0].description;
-            humidityElement.textContent = `${data.main.humidity}%`;
-            windElement.textContent = `${Math.round(data.wind.speed)} ${unitToggle.checked ? 'mph' : 'm/s'}`;
+            elementsMap.location.textContent = data.name;
+            elementsMap.weatherIcon.hidden = false;
+            elementsMap.weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+            elementsMap.temperature.textContent = `${Math.round(data.main.temp)}°${imperial ? 'F' : 'C'}`;
+            elementsMap.description.textContent = data.weather[0].description;
+            elementsMap.humidity.textContent = `${data.main.humidity}%`;
+            elementsMap.wind.textContent = `${Math.round(data.wind.speed)} ${imperial ? 'mph' : 'm/s'}`;
         })
         .catch(error => {
             console.error('Error fetching weather data:', error);
